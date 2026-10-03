@@ -46,6 +46,3 @@ def google_login():
 @login_required
 def get_me():
     result = supabase.table("users").select("*").eq("id", g.user_id).limit(1).execute()
-    if not result.data:
-        return jsonify({"error": "User not found"}), 404
-    return jsonify({"user": result.data[0]}), 200
